@@ -11,6 +11,21 @@ public function listar(){
     $sql->execute();
     return $sql->fetchAll();
 }
+
+public function listarNovas(){
+    $sql = $this->conexao->prepare("SELECT * FROM venda WHERE data = :query");
+    $sql->bindValue(":query",date("Y-m-d"));
+    $sql->execute();
+    return $sql->fetchAll();
+}
+
+public function listarAntigas(){
+    $sql = $this->conexao->prepare("SELECT * FROM venda WHERE data != :query");
+    $sql->bindValue(":query",date("Y-m-d"));
+    $sql->execute();
+    return $sql->fetchAll();
+}
+
 public function retornarUnico($id){
     $sql = $this->conexao->prepare("SELECT * FROM venda WHERE id_venda = :id");
     $sql->bindValue(":id",$id);
@@ -24,6 +39,7 @@ public function alterarStatus($id,$status){
     $sql->bindValue(":id",$id);
     return $sql->execute();
 }
+
     public function inserirVenda(venda $venda){
         $sql = $this->conexao->prepare("INSERT INTO venda(id_cliente_id, pagamento, entrega, data, status) values(:id_cliente_id,:pagamento,:entrega,:data_entrega,:estatus)");
         $sql->bindValue(":id_cliente_id",$venda->getIdClienteId());

@@ -30,13 +30,26 @@
 
 		public function listarPCategoria($categoria){
 			$sql= $this->conexao->prepare(
-			"select produto.*, categoria.* from produto inner join categoria on produto.id_categoria_id = categoria.id_categoria and categoria.nome = :categoria");
+			"select produto.*, categoria.* from produto inner join categoria on produto.id_categoria_id = categoria.id_categoria where categoria.nome = :categoria");
 			$sql->bindValue(":categoria", $categoria);
 			$sql->execute();
 			return $sql->fetchAll();
 		}
 
-
+		public function listarPNomeDesc($pesquisa){
+			$pesquisa = "%{$pesquisa}%";
+			$sql = $this->conexao->prepare(
+				"SELECT produto.*, categoria.* 
+				 FROM produto 
+				 INNER JOIN categoria ON produto.id_categoria_id = categoria.id_categoria 
+				 WHERE produto.nome_produto LIKE :pesq 
+				 OR produto.descricao LIKE :pesq"
+			);
+			$sql->bindValue(":pesq", $pesquisa);
+			$sql->execute();
+			return $sql->fetchAll();
+		}
+		
 
 		public function excluir($id){
 			$sql= $this->conexao->prepare(

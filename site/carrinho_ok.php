@@ -37,9 +37,6 @@ foreach($_SESSION['carrinho'] as $produto){
     $teste->setValorUnitario($valor_unitario['valor']);
     $ObjvendasProdutosDAO->inserir($teste);
 }
-
-if(!$_SESSION['logado'])
-header("location: ../usuarios/login.php");
 ?>  
 <html lang="pt">
 <head>
@@ -60,8 +57,8 @@ header("location: ../usuarios/login.php");
     <header>
         <h1 id="titulo">Boutique Elegance</h1>
     </header>
-    <div id="container">
-            <form id="form-prech" action="login_ok.php" method="POST" style="width: auto; padding: 20px;">
+    <div id="container" style="display: flex; flex-direction: column;">
+            <form id="form-prech" style="width: auto; padding: 20px;">
                 <p id="text-form">Compra realizada com sucesso!</p>
                 <div class="centralizarecibo" style="padding: 20px">
                 <p style="background-color: #d6d6d6; padding: 4px;">Dados da compra:</p>
@@ -93,11 +90,12 @@ header("location: ../usuarios/login.php");
                 <div style="display: flex; gap: 4px;" class="recibo_mini">
                     <p>Quantidade: </p><input class="inputs" value="<?=$query['quantidade']?>" readonly>
                 </div>
+                
             </div>
             <?php } ?>
             <h3 style="background-color: green; padding: 5px; border-radius: 6px; color: white;">Valor total da compra: R$<?=$ValorTotal?></h3>
-            </form>
-            
+        </form>
+             <button class="btn-op" onclick="window.location.href='usuario_produtos.php'">Retornar</button>
     </div>
 </body>
 </html>

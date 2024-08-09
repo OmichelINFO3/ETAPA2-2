@@ -14,6 +14,7 @@
     $retornoCat = $objCategoriaDAO->listar();
     $objProdutoDAO = new produtosDAO();
     $retorno = $objProdutoDAO->listar();
+    $retornoPesquisa = $objProdutoDAO->listarPNomeDesc($_GET['pesquisa']);
 ?>
 <html lang="pt">
 <head>
@@ -51,7 +52,7 @@
                 <?php } ?>
             </div>
             <div class="container-list">
-            <?php foreach ($retorno as $query) { ?>
+            <?php foreach ($retornoPesquisa as $query) { ?>
                 <div class='form-listar'>
                     <p class='top-text'><?= $query['nome_produto'] ?></p>
                     <p style='color:green; font-weight:bold;'><?= $query['valor'] ?> R$</p>

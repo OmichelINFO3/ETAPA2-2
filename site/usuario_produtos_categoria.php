@@ -31,6 +31,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,369;1,369&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/style.css">
+    <style>
+        .text-categoria{
+            background: rgb(255,255,255);
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 100%);
+            border-radius: 5px;
+            padding: 3px;
+            margin: 2px;
+            width: 80px;
+            text-align: center;
+            font-family:"lobster";
+            color: green;
+            overflow-wrap: break-word;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -39,10 +54,15 @@
         </div>
         <div>
             <a id="carrinho" style="width:auto;"href="carrinho.php">Carrinho de compras</a>
+            <form action="usuario_produtos_pesquisa.php" method="GET">
+                <input type="text" name="pesquisa" class="inputs">
+                <button class="btn-op">Procurar</button>
+            </form>
         </div>
     </header>
     <div id="container-geral">
     <div id="div-botoes">
+        <p class="text-categoria">Acesso as categorias</p>
         <?php
             foreach($retornoCat as $query){?>
             <button class="side-links" onclick="window.location.href='usuario_produtos_categoria.php?categoria=<?=$query['nome']?>'"><?=$query['nome']?></button>

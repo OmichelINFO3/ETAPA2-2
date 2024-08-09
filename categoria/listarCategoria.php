@@ -30,7 +30,7 @@ $retorno = $objCategoriaDAO->listar();
     </header>
     <div class="container-list">
         <?php foreach($retorno as $linha){?>
-    <form id="form-prech" style="text-align: center;">
+    <form class="form-listar" style="text-align: center;">
         <h3 id="text-form"><?=$linha["nome"]?></h3>
         <a class="btn-op" href='excluirCategoria.php?id_categoria=<?=$linha["id_categoria"]?>'>excluir</a>
         <a class="btn-op" href='editarCategoria.php?id_categoria=<?=$linha["id_categoria"]?>'>Editar</a>
